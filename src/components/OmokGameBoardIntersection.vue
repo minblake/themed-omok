@@ -1,25 +1,16 @@
 <template>
   <div class="omok-game-board-intersection" @click="placePiece()">
-    <img v-if="value" :src="omokPieceUrl(position)" />
+    <img v-if="pieces[position]" :src="omokPieceUrl(position)" />
     <template v-else>{{ position }}</template>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 export default {
   name: "OmokGameBoardIntersection",
-  props: {
-    position: {
-      type: Number,
-      required: true
-    },
-    value: {
-      type: String,
-      required: true
-    }
-  },
   computed: {
+    ...mapState(["pieces"]),
     ...mapGetters(["omokPieceUrl"])
   },
   methods: {

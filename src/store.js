@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     gridSize: 15,
     intersectionSize: "30px",
-    pieces: Array(225).fill(""),
+    pieces: Array(225).fill(false),
     theme: "maplestory",
     playerOnePiece: "slime.png",
     playerTwoPiece: "mushroom.png",

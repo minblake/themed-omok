@@ -11,7 +11,6 @@
       v-for="(n, i) in numIntersections"
       :key="n"
       :position="i"
-      :value="pieces[i]"
     />
   </div>
 </template>
