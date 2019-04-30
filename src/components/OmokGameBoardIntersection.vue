@@ -1,12 +1,12 @@
 <template>
-  <button class="omok-game-board-intersection" @click="placePiece(position)">
-    <template v-if="value">{{ value }}</template>
+  <div class="omok-game-board-intersection" @click="placePiece()">
+    <img v-if="value" :src="omokPieceUrl(position)" />
     <template v-else>{{ position }}</template>
-  </button>
+  </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "OmokGameBoardIntersection",
   props: {
@@ -19,8 +19,15 @@ export default {
       required: true
     }
   },
+  computed: {
+    ...mapGetters(["omokPieceUrl"])
+  },
   methods: {
-    ...mapMutations(["placePiece"])
+    ...mapMutations(["updatePieces", "updateCurrPlayer"]),
+    placePiece() {
+      this.updatePieces(this.position);
+      this.updateCurrPlayer();
+    }
   }
 };
 </script>
