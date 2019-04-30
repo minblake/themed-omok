@@ -17,8 +17,8 @@ export default new Vuex.Store({
     numIntersections: state => {
       return state.gridSize * state.gridSize;
     },
-    omokPieceUrl: state => position => {
-      return require(`@/assets/img/${state.theme}/${state.pieces[position]}`);
+    getPieceUrl: state => name => {
+      return require(`@/assets/img/${state.theme}/${name}`);
     }
   },
   mutations: {

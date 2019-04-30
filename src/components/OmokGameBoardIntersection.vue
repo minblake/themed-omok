@@ -1,6 +1,6 @@
 <template>
   <div class="omok-game-board-intersection" @click="placePiece()">
-    <img v-if="pieces[position]" :src="omokPieceUrl(position)" />
+    <img v-if="pieces[position]" :src="getPieceUrl(pieces[position])" />
     <template v-else>{{ position }}</template>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     ...mapState(["pieces"]),
-    ...mapGetters(["omokPieceUrl"])
+    ...mapGetters(["getPieceUrl"])
   },
   methods: {
     ...mapMutations(["updatePieces", "updateCurrPlayer"]),
