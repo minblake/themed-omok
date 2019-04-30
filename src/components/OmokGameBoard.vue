@@ -11,6 +11,7 @@
       v-for="(n, i) in numIntersections"
       :key="n"
       :position="i"
+      :value="pieces[i]"
     />
   </div>
 </template>
@@ -25,7 +26,7 @@ export default {
     OmokGameBoardIntersection
   },
   computed: {
-    ...mapState(["gridSize", "intersectionSize"]),
+    ...mapState(["gridSize", "intersectionSize", "pieces"]),
     ...mapGetters(["numIntersections"])
   }
 };

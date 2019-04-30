@@ -6,11 +6,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     gridSize: 15,
-    intersectionSize: "25px"
+    intersectionSize: "30px",
+    pieces: Array(225).fill("")
   },
   getters: {
-    numIntersections: ({ gridSize }) => gridSize * gridSize
+    numIntersections({ gridSize }) {
+      return gridSize * gridSize;
+    }
   },
-  mutations: {},
+  mutations: {
+    placePiece({ pieces }, position) {
+      pieces.splice(position, 1, "O");
+    }
+  },
   actions: {}
 });
