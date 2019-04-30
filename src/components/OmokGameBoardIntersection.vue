@@ -9,6 +9,12 @@
 import { mapState, mapGetters, mapMutations } from "vuex";
 export default {
   name: "OmokGameBoardIntersection",
+  props: {
+    position: {
+      type: Number,
+      required: true
+    }
+  },
   computed: {
     ...mapState(["pieces"]),
     ...mapGetters(["omokPieceUrl"])
