@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     gridSize: 15,
     intersectionSize: "30px",
-    pieces: Array(225).fill(false),
+    pieces: Array(225).fill(""),
+    lastMove: -1,
     theme: "maplestory",
     playerOnePiece: "slime.png",
     playerTwoPiece: "mushroom.png",
@@ -22,13 +23,16 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    updatePieces(state, position) {
+    updatePieces: (state, position) => {
       state.isCurrPlayerOne
         ? state.pieces.splice(position, 1, state.playerOnePiece)
         : state.pieces.splice(position, 1, state.playerTwoPiece);
     },
-    updateCurrPlayer(state) {
+    updateCurrPlayer: state => {
       state.isCurrPlayerOne = !state.isCurrPlayerOne;
+    },
+    updateLastMove: (state, position) => {
+      state.lastMove = position;
     }
   },
   actions: {}
