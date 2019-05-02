@@ -8,18 +8,33 @@ export default new Vuex.Store({
     gridSize: 15,
     intersectionSize: "30px",
     pieces: Array(225).fill(""),
-    lastMove: -1,
     theme: "maplestory",
     playerOnePiece: "slime.png",
     playerTwoPiece: "mushroom.png",
-    isCurrPlayerOne: true
+    isCurrPlayerOne: true,
+    lastMove: -1
   },
   getters: {
-    numIntersections: state => {
+    getNumIntersections: state => {
       return state.gridSize * state.gridSize;
     },
     getPieceUrl: state => name => {
-      return require(`@/assets/img/${state.theme}/${name}`);
+      if (name) {
+        return require(`@/assets/img/${state.theme}/${name}`);
+      }
+    },
+    getCurrPlayer: state => {
+      if (state.isCurrPlayerOne) {
+        return {
+          name: "Player 1",
+          piece: state.playerOnePiece
+        };
+      } else {
+        return {
+          name: "Player 2",
+          piece: state.playerTwoPiece
+        };
+      }
     }
   },
   mutations: {

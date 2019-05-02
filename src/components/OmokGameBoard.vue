@@ -8,7 +8,7 @@
     }"
   >
     <omok-game-board-intersection
-      v-for="(n, i) in numIntersections"
+      v-for="(n, i) in getNumIntersections"
       :key="n"
       :position="i"
       :value="pieces[i]"
@@ -27,10 +27,10 @@ export default {
   },
   computed: {
     ...mapState(["gridSize", "intersectionSize", "pieces", "lastMove"]),
-    ...mapGetters(["numIntersections"])
+    ...mapGetters(["getNumIntersections"])
   },
   watch: {
-    pieces() {
+    lastMove() {
       this.checkWin();
     }
   },
