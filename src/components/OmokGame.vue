@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
 import OmokGameState from "./OmokGameState.vue";
 import OmokGameBoard from "./OmokGameBoard.vue";
 
@@ -16,10 +15,6 @@ export default {
   components: {
     OmokGameState,
     OmokGameBoard
-  },
-  computed: {
-    ...mapState(["playerOnePiece", "playerTwoPiece", "isCurrPlayerOne"]),
-    ...mapGetters(["getPieceUrl"])
   }
 };
 </script>

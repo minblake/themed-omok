@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "OmokGameState",
@@ -17,7 +17,6 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["playerOnePiece", "playerTwoPiece", "isCurrPlayerOne"]),
     ...mapGetters(["getPieceUrl", "getCurrPlayer"])
   }
 };
