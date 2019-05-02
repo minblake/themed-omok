@@ -25,9 +25,12 @@ export default {
   methods: {
     ...mapMutations(["updatePieces", "updateLastMove", "updateCurrPlayer"]),
     placePiece() {
-      this.updatePieces(this.position);
-      this.updateLastMove(this.position);
-      this.updateCurrPlayer();
+      // prevent from placing a piece on the same place
+      if (!this.value) {
+        this.updatePieces(this.position);
+        this.updateLastMove(this.position);
+        this.updateCurrPlayer();
+      }
     }
   }
 };
