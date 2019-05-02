@@ -23,13 +23,13 @@ export default {
     ...mapGetters(["getPieceUrl"])
   },
   methods: {
-    ...mapMutations(["updatePieces", "updateLastMove", "updateCurrPlayer"]),
+    ...mapMutations(["updatePieces", "updateLastMove", "toggleCurrPlayer"]),
     placePiece() {
       // prevent from placing a piece on the same place
       if (!this.value) {
         this.updatePieces(this.position);
         this.updateLastMove(this.position);
-        this.updateCurrPlayer();
+        this.toggleCurrPlayer();
       }
     }
   }

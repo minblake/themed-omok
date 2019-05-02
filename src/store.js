@@ -9,8 +9,14 @@ export default new Vuex.Store({
     intersectionSize: "30px",
     pieces: Array(225).fill(""),
     theme: "maplestory",
-    playerOnePiece: "slime.png",
-    playerTwoPiece: "mushroom.png",
+    playerOne: {
+      name: "Player 1",
+      piece: "slime.png"
+    },
+    playerTwo: {
+      name: "Player 2",
+      piece: "mushroom.png"
+    },
     isCurrPlayerOne: true,
     lastMove: -1
   },
@@ -18,32 +24,26 @@ export default new Vuex.Store({
     getNumIntersections: state => {
       return state.gridSize * state.gridSize;
     },
-    getPieceUrl: state => name => {
-      if (name) {
-        return require(`@/assets/img/${state.theme}/${name}`);
+    getPieceUrl: state => piece => {
+      if (piece) {
+        return require(`@/assets/img/${state.theme}/${piece}`);
       }
     },
     getCurrPlayer: state => {
       if (state.isCurrPlayerOne) {
-        return {
-          name: "Player 1",
-          piece: state.playerOnePiece
-        };
+        return state.playerOne;
       } else {
-        return {
-          name: "Player 2",
-          piece: state.playerTwoPiece
-        };
+        return state.playerTwo;
       }
     }
   },
   mutations: {
     updatePieces: (state, position) => {
       state.isCurrPlayerOne
-        ? state.pieces.splice(position, 1, state.playerOnePiece)
-        : state.pieces.splice(position, 1, state.playerTwoPiece);
+        ? state.pieces.splice(position, 1, state.playerOne.piece)
+        : state.pieces.splice(position, 1, state.playerTwo.piece);
     },
-    updateCurrPlayer: state => {
+    toggleCurrPlayer: state => {
       state.isCurrPlayerOne = !state.isCurrPlayerOne;
     },
     updateLastMove: (state, position) => {
