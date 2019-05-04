@@ -18,7 +18,8 @@ export default new Vuex.Store({
       piece: "mushroom.png"
     },
     isCurrPlayerOne: true,
-    lastMove: -1
+    lastMove: -1,
+    winner: 0
   },
   getters: {
     getNumIntersections: state => {
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     },
     updateLastMove: (state, position) => {
       state.lastMove = position;
+    },
+    updateWinner: (state, playerNum) => {
+      state.winner = playerNum;
     }
   },
   actions: {}

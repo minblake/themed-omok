@@ -9,15 +9,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "OmokGameState",
-  data() {
-    return {};
-  },
   computed: {
+    ...mapState(["winner"]),
     ...mapGetters(["getPieceUrl", "getCurrPlayer"])
+  },
+  watch: {
+    winner() {
+      alert(`${this.getCurrPlayer.name} wins!`);
+    }
   }
 };
 </script>

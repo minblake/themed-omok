@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
 import OmokGameBoardIntersection from "./OmokGameBoardIntersection.vue";
 
 export default {
@@ -26,7 +26,13 @@ export default {
     OmokGameBoardIntersection
   },
   computed: {
-    ...mapState(["gridSize", "intersectionSize", "pieces", "lastMove"]),
+    ...mapState([
+      "gridSize",
+      "intersectionSize",
+      "pieces",
+      "lastMove",
+      "isCurrPlayerOne"
+    ]),
     ...mapGetters(["getNumIntersections"])
   },
   watch: {
@@ -35,6 +41,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["updateWinner", "toggleCurrPlayer"]),
     checkWin() {
       const HORIZONTAL = 1;
       const VERTICAL = this.gridSize;
@@ -47,7 +54,7 @@ export default {
         this.checkDirection(LEFT_DIAGONAL) ||
         this.checkDirection(RIGHT_DIAGONAL)
       )
-        console.log("win!");
+        this.isCurrPlayerOne ? this.updateWinner(1) : this.updateWinner(2);
     },
     checkDirection(dir) {
       let i;
