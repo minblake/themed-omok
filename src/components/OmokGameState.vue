@@ -19,7 +19,7 @@ export default {
   },
   watch: {
     winner() {
-      alert(`${this.getCurrPlayer.name} wins!`);
+      if (this.winner !== 0) alert(`${this.getCurrPlayer.name} wins!`);
     }
   }
 };

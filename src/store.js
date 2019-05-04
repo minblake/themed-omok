@@ -52,6 +52,12 @@ export default new Vuex.Store({
     },
     updateWinner: (state, playerNum) => {
       state.winner = playerNum;
+    },
+    resetState: state => {
+      Vue.set(state, "pieces", Array(225).fill(""));
+      state.isCurrPlayerOne = true;
+      state.lastMove = -1;
+      state.winner = 0;
     }
   },
   actions: {}

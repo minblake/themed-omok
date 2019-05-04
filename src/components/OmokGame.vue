@@ -1,12 +1,16 @@
 <template>
   <div class="omok-game">
-    <h1 class="omok-game-title">Game</h1>
+    <div class="omok-game-title">
+      <h1>Game</h1>
+      <button type="button" @click="resetState()">Reset</button>
+    </div>
     <omok-game-state />
     <omok-game-board />
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import OmokGameState from "./OmokGameState.vue";
 import OmokGameBoard from "./OmokGameBoard.vue";
 
@@ -15,6 +19,9 @@ export default {
   components: {
     OmokGameState,
     OmokGameBoard
+  },
+  methods: {
+    ...mapMutations(["resetState"])
   }
 };
 </script>
