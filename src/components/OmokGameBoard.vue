@@ -8,16 +8,16 @@
     }"
   >
     <omok-game-board-intersection
-      v-for="(n, i) in getNumIntersections"
+      v-for="(n, i) in boardSize"
       :key="n"
       :position="i"
-      :value="pieces[i]"
+      :piece="board[i]"
     />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import OmokGameBoardIntersection from "./OmokGameBoardIntersection.vue";
 
 export default {
@@ -25,15 +25,19 @@ export default {
   components: {
     OmokGameBoardIntersection
   },
+  props: {},
+  data() {
+    return {
+      gridSize: 15,
+      intersectionSize: "30px",
+      board: Array(225).fill(0)
+    };
+  },
   computed: {
-    ...mapState([
-      "gridSize",
-      "intersectionSize",
-      "pieces",
-      "lastMove",
-      "isCurrPlayerOne"
-    ]),
-    ...mapGetters(["getNumIntersections"])
+    ...mapState(["lastMove", "isCurrPlayerOne"]),
+    boardSize() {
+      return this.board.length;
+    }
   },
   watch: {
     lastMove() {

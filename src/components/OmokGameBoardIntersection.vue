@@ -1,6 +1,6 @@
 <template>
   <div class="omok-game-board-intersection" @click="placePiece()">
-    <img v-if="value" :src="getPieceUrl(value)" />
+    <img v-if="piece" :src="getPieceUrl(piece)" />
     <template v-else>{{ position }}</template>
   </div>
 </template>
@@ -14,8 +14,8 @@ export default {
       type: Number,
       required: true
     },
-    value: {
-      type: String,
+    piece: {
+      type: Number,
       required: true
     }
   },

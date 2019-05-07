@@ -5,9 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    gridSize: 15,
-    intersectionSize: "30px",
-    pieces: Array(225).fill(""),
     theme: "maplestory",
     playerOne: {
       name: "Player 1",
