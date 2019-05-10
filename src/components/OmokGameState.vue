@@ -1,26 +1,19 @@
 <template>
   <div class="omok-game-state">
-    <h3 class="omok-game-player-turn">{{ `${getCurrPlayer.name}'s Turn` }}</h3>
-    <img
-      class="omok-game-player-piece"
-      :src="getPieceUrl(getCurrPlayer.piece)"
-    />
+    <h3 class="omok-game-player-turn">
+      {{ `${currInfo.name}'s Turn` }}
+    </h3>
+    <img class="omok-game-player-piece" :src="pieceUrl(currInfo.piece)" />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "OmokGameState",
   computed: {
-    ...mapState(["winner"]),
-    ...mapGetters(["getPieceUrl", "getCurrPlayer"])
-  },
-  watch: {
-    winner() {
-      if (this.winner !== 0) alert(`${this.getCurrPlayer.name} wins!`);
-    }
+    ...mapGetters("player", ["pieceUrl", "currInfo"])
   }
 };
 </script>
