@@ -1,12 +1,15 @@
 <template>
-  <div class="omok-game-board-intersection" @click="placePiece()">
-    <img v-if="piece" :src="getPieceUrl(piece)" />
-    <template v-else>{{ position }}</template>
+  <div class="omok-game-board-intersection" @click="endTurn(position)">
+    <img v-if="validPiece" :src="pieceUrl(piece)" />
+    <template v-else>
+      {{ `${position}` }}
+    </template>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "OmokGameBoardIntersection",
   props: {
@@ -16,28 +19,26 @@ export default {
     },
     piece: {
       type: Number,
-      required: true
+      default: -1
     }
   },
   computed: {
-    ...mapGetters(["getPieceUrl"])
+    ...mapGetters("player", ["pieceUrl"]),
+    validPiece() {
+      return this.piece == 0 || this.piece == 1;
+    }
   },
   methods: {
-    ...mapMutations(["updatePieces", "updateLastMove", "toggleCurrPlayer"]),
-    placePiece() {
-      // prevent from placing a piece on the same place
-      if (!this.value) {
-        this.updatePieces(this.position);
-        this.updateLastMove(this.position);
-        this.toggleCurrPlayer();
-      }
-    }
+    ...mapActions(["endTurn"])
   }
 };
 </script>
 
 <style>
 .omok-game-board-intersection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
   font-size: 10px;
 }
