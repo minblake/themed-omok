@@ -35,15 +35,16 @@ export default new Vuex.Store({
       };
       if (param.board[i] < 0) {
         commit("board/updateBoard", {
-          i: i,
+          i,
           player: param.player
         });
         commit("updateLastMove", i);
         if (checkMove(param)) {
-          alert(`${param.player} wins!`);
           commit("updateWinner", param.player);
+          alert(`${param.player} wins!`);
+        } else {
+          commit("player/toggleCurr");
         }
-        commit("player/toggleCurr");
       }
     }
   }
