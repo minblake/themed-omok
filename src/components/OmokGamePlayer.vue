@@ -1,5 +1,5 @@
 <template>
-  <div class="omok-game-player">
+  <div class="omok-game-player" :class="[num === 0 ? 'one' : 'two']">
     <input v-model="playerName" type="text" />
   </div>
 </template>
@@ -12,6 +12,12 @@ export default {
       type: Number,
       required: true
     }
+  },
+  data() {
+    return {
+      playerOneStyle: { gridArea: "player-one" },
+      playerTwoStyle: { gridArea: "player-two" }
+    };
   },
   computed: {
     playerName: {
@@ -29,4 +35,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.one {
+  grid-area: player-one;
+}
+
+.two {
+  grid-area: player-two;
+}
+</style>
