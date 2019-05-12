@@ -13,12 +13,6 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      playerOneStyle: { gridArea: "player-one" },
-      playerTwoStyle: { gridArea: "player-two" }
-    };
-  },
   computed: {
     playerName: {
       get() {
