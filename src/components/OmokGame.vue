@@ -2,22 +2,22 @@
   <div class="omok-game">
     <omok-game-state />
     <omok-game-board />
+    <omok-game-player :num="0" />
+    <omok-game-player :num="1" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import OmokGameState from "./OmokGameState.vue";
 import OmokGameBoard from "./OmokGameBoard.vue";
+import OmokGamePlayer from "./OmokGamePlayer.vue";
 
 export default {
   name: "OmokGame",
   components: {
+    OmokGameState,
     OmokGameBoard,
-    OmokGameState
-  },
-  computed: {
-    ...mapGetters("player", ["currInfo"])
+    OmokGamePlayer
   }
 };
 </script>

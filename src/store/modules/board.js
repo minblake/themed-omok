@@ -11,6 +11,6 @@ export default {
   },
   mutations: {
     updateBoard: (state, payload) =>
-      state.board.splice(payload.i, 1, payload.player)
+      state.board.splice(payload.position, 1, payload.player)
   }
 };

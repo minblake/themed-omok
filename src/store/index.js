@@ -22,28 +22,29 @@ export default new Vuex.Store({
     winner: state => state.winner
   },
   mutations: {
-    updateLastMove: (state, i) => (state.lastMove = i),
-    updateWinner: (state, i) => (state.winner = i)
+    updateLastMove: (state, position) => (state.lastMove = position),
+    updateWinner: (state, playerNum) => (state.winner = playerNum)
   },
   actions: {
-    endTurn: ({ commit, getters }, i) => {
+    endTurn: ({ commit, getters }, position) => {
       const param = {
-        lastMove: i,
+        lastMove: position,
         board: getters["board/board"],
         player: getters["player/curr"],
         gridSize: getters["board/dim"].grid
       };
-      if (param.board[i] < 0) {
+      if (param.board[position] < 0) {
         commit("board/updateBoard", {
-          i: i,
+          position,
           player: param.player
         });
-        commit("updateLastMove", i);
+        commit("updateLastMove", position);
         if (checkMove(param)) {
-          alert(`${param.player} wins!`);
           commit("updateWinner", param.player);
+          alert(`${param.player} wins!`);
+        } else {
+          commit("player/toggleCurr");
         }
-        commit("player/toggleCurr");
       }
     }
   }
