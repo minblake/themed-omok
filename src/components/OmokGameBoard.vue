@@ -3,8 +3,8 @@
     class="omok-game-board"
     :style="{
       gridTemplate:
-        `repeat(${dim.grid}, ${dim.intersection}px) /` +
-        `repeat(${dim.grid}, ${dim.intersection}px)`
+        `repeat(${boardDim.grid}, ${boardDim.intersection}px) /` +
+        `repeat(${boardDim.grid}, ${boardDim.intersection}px)`
     }"
   >
     <omok-game-board-intersection
@@ -26,7 +26,11 @@ export default {
     OmokGameBoardIntersection
   },
   computed: {
-    ...mapGetters("board", ["board", "dim", "boardSize"])
+    ...mapGetters("game/board", {
+      board: "getBoard",
+      boardDim: "getDim",
+      boardSize: "getBoardSize"
+    })
   }
 };
 </script>

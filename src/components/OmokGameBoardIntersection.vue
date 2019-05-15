@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "OmokGameBoardIntersection",
@@ -23,13 +23,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("player", ["pieceUrl"]),
+    pieceUrl() {
+      return this.$store.getters["theme/getPiece"];
+    },
     validPiece() {
       return this.piece == 0 || this.piece == 1;
     }
   },
   methods: {
-    ...mapActions(["endTurn"])
+    ...mapActions("game", ["endTurn"])
   }
 };
 </script>

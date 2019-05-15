@@ -16,11 +16,11 @@ export default {
   computed: {
     playerName: {
       get() {
-        return this.$store.getters["player/playerName"](this.num);
+        return this.$store.getters["game/player/getName"](this.num);
       },
       set(newName) {
-        this.$store.dispatch("player/updatePlayerName", {
-          num: this.num,
+        this.$store.dispatch("game/player/setName", {
+          i: this.num,
           name: newName
         });
       }

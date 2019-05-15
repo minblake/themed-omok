@@ -1,19 +1,22 @@
 <template>
   <div class="omok-game-state">
     <h3 class="omok-game-player-turn">
-      {{ `${currInfo.name}'s Turn` }}
+      {{ `${currPlayer.name}'s Turn` }}
     </h3>
-    <img class="omok-game-player-piece" :src="pieceUrl(currInfo.piece)" />
+    <img class="omok-game-player-piece" :src="currPieceUrl(currPlayer.piece)" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   name: "OmokGameState",
   computed: {
-    ...mapGetters("player", ["pieceUrl", "currInfo"])
+    currPlayer() {
+      return this.$store.getters["game/player/getCurrInfo"];
+    },
+    currPieceUrl() {
+      return this.$store.getters["theme/getPiece"];
+    }
   }
 };
 </script>
