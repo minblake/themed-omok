@@ -1,6 +1,6 @@
 <template>
   <div class="omok-game-board-intersection" @click="endTurn(position)">
-    <img v-if="validPiece" :src="pieceUrl(piece)" />
+    <img v-if="piece >= 0" :src="pieceUrl(piece)" />
     <template v-else>
       {{ `${position}` }}
     </template>
@@ -25,9 +25,6 @@ export default {
   computed: {
     pieceUrl() {
       return this.$store.getters["theme/getPiece"];
-    },
-    validPiece() {
-      return this.piece == 0 || this.piece == 1;
     }
   },
   methods: {
