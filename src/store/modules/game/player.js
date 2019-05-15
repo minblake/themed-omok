@@ -3,7 +3,7 @@ import { SET_NAME, SET_PIECE, TOGGLE_CURR } from "../../mutation-types";
 export default {
   namespaced: true,
   state: {
-    players: [{ name: "Player 1", piece: 0 }, { name: "Player 2", piece: 1 }],
+    players: [{ name: "Player 1", piece: 2 }, { name: "Player 2", piece: 3 }],
     curr: 0
   },
   getters: {
@@ -13,11 +13,11 @@ export default {
     getCurrInfo: state => {
       return state.players[state.curr];
     },
-    getName: state => {
-      return i => state.players[i].name;
+    getInfo: state => {
+      return i => state.players[i];
     },
-    getPiece: state => {
-      return i => state.players[i].piece;
+    getPiecesInUse: state => {
+      return [state.players[0].piece, state.players[1].piece];
     }
   },
   mutations: {
