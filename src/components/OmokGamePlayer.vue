@@ -7,10 +7,13 @@
         :key="i"
         class="button"
         :class="{
-          'is-success': piecesInUse[num] == i,
-          'is-danger': piecesInUse[(num + 1) % 2] == i
+          'is-success': playerPiece == i,
+          'is-danger': otherPlayerPiece == i
         }"
-        :disabled="piecesInUse[(num + 1) % 2] == i"
+        :disabled="playerPiece == i || otherPlayerPiece == i"
+        @click="
+          changePiece({ player: num, oldPiece: playerPiece, newPiece: i })
+        "
       >
         <img :src="piece" />
       </button>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "OmokGamePlayer",
   props: {
@@ -29,27 +32,36 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("game/player", {
-      player: "getInfo",
-      piecesInUse: "getPiecesInUse"
-    }),
-    ...mapGetters("theme", {
-      pieces: "getCurrPieces"
-    }),
+    pieces() {
+      return this.$store.getters["theme/getCurrPieces"];
+    },
+    piecesInUse() {
+      return this.$store.getters["game/player/getPiecesInUse"];
+    },
+    player() {
+      return this.$store.getters["game/player/getInfo"](this.num);
+    },
+    playerPiece() {
+      return this.player.piece;
+    },
+    otherPlayerPiece() {
+      return this.piecesInUse[(this.num + 1) % 2];
+    },
     playerName: {
       get() {
-        return this.player(this.num).name;
+        return this.player.name;
       },
       set(newName) {
         this.setName({ i: this.num, name: newName });
       }
     },
     playerPieceUrl() {
-      return this.pieces[this.player(this.num).piece];
+      return this.pieces[this.player.piece];
     }
   },
   methods: {
-    ...mapActions("game/player", ["setName", "setPiece"])
+    ...mapActions("game/player", ["setName", "setPiece"]),
+    ...mapActions("game", ["changePiece"])
   }
 };
 </script>

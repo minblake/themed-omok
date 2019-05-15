@@ -3,7 +3,8 @@ export const SET_LAST_MOVE = "SET_LAST_MOVE";
 export const SET_WINNER = "SET_WINNER";
 
 // game/board.js
-export const UPDATE_BOARD = "UPDATE_BOARD";
+export const UPDATE_PIECE = "UPDATE_PIECE";
+export const PLACE_PIECE = "PLACE_PIECE";
 
 // game/player.js
 export const TOGGLE_CURR = "TOGGLE_CURR";

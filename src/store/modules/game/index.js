@@ -41,7 +41,7 @@ export default {
       };
 
       if (param.board[position] < 0) {
-        dispatch("board/updateBoard", {
+        dispatch("board/placePiece", {
           position,
           piece: currPlayerInfo.piece
         });
@@ -55,6 +55,13 @@ export default {
           dispatch("player/toggleCurr");
         }
       }
+    },
+    changePiece: ({ dispatch }, payload) => {
+      dispatch("board/updatePiece", payload);
+      dispatch("player/setPiece", {
+        i: payload.player,
+        piece: payload.newPiece
+      });
     }
   }
 };

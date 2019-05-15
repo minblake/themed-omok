@@ -1,4 +1,4 @@
-import { UPDATE_BOARD } from "../../mutation-types";
+import { UPDATE_PIECE, PLACE_PIECE } from "../../mutation-types";
 
 export default {
   namespaced: true,
@@ -18,13 +18,21 @@ export default {
     }
   },
   mutations: {
-    [UPDATE_BOARD]: (state, payload) => {
+    [PLACE_PIECE]: (state, payload) => {
       state.board.splice(payload.position, 1, payload.piece);
+    },
+    [UPDATE_PIECE]: (state, payload) => {
+      state.board = state.board.map(x =>
+        x == payload.oldPiece ? (x = payload.newPiece) : x
+      );
     }
   },
   actions: {
-    updateBoard: ({ commit }, payload) => {
-      commit(UPDATE_BOARD, payload);
+    placePiece: ({ commit }, payload) => {
+      commit(PLACE_PIECE, payload);
+    },
+    updatePiece: ({ commit }, payload) => {
+      commit(UPDATE_PIECE, payload);
     }
   }
 };
