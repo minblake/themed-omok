@@ -35,7 +35,7 @@ export default {
 
       const param = {
         lastMove: position,
-        player: getters["player/getCurr"],
+        piece: currPlayerInfo.piece,
         board: getters["board/getBoard"],
         gridSize: getters["board/getDim"].grid
       };
