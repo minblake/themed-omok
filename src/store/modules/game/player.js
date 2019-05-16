@@ -3,7 +3,7 @@ import { SET_NAME, SET_PIECE, TOGGLE_CURR } from "../../mutation-types";
 export default {
   namespaced: true,
   state: {
-    players: [{ name: "Player 1", piece: 2 }, { name: "Player 2", piece: 3 }],
+    players: [{ name: "Player 1", piece: 0 }, { name: "Player 2", piece: 1 }],
     curr: 0
   },
   getters: {

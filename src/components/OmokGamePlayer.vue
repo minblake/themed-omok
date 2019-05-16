@@ -1,22 +1,40 @@
 <template>
   <div class="omok-game-player" :class="[num === 0 ? 'one' : 'two']">
-    <input v-model="playerName" type="text" />
-    <div class="buttons has-addons">
-      <button
-        v-for="(piece, i) in pieces"
-        :key="i"
-        class="button"
-        :class="{
-          'is-success': playerPiece == i,
-          'is-danger': otherPlayerPiece == i
-        }"
-        :disabled="playerPiece == i || otherPlayerPiece == i"
-        @click="
-          changePiece({ player: num, oldPiece: playerPiece, newPiece: i })
-        "
-      >
-        <img :src="piece" />
-      </button>
+    <div class="card">
+      <header class="card-header">
+        <div class="card-header-title control">
+          <input
+            v-model="playerName"
+            type="text"
+            class="input has-text-centered"
+          />
+        </div>
+      </header>
+      <div class="card-content">
+        <figure class="player-piece image is-32x32">
+          <img :src="pieces[player.piece]" />
+        </figure>
+        <div class="buttons has-addons">
+          <button
+            v-for="(piece, i) in pieces"
+            :key="i"
+            class="button"
+            :class="{
+              'is-light': piecesInUse.includes(i)
+            }"
+            :disabled="piecesInUse.includes(i)"
+            @click="
+              changePiece({
+                player: num,
+                oldPiece: player.piece,
+                newPiece: i
+              })
+            "
+          >
+            <img :src="piece" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -41,12 +59,6 @@ export default {
     player() {
       return this.$store.getters["game/player/getInfo"](this.num);
     },
-    playerPiece() {
-      return this.player.piece;
-    },
-    otherPlayerPiece() {
-      return this.piecesInUse[(this.num + 1) % 2];
-    },
     playerName: {
       get() {
         return this.player.name;
@@ -54,9 +66,6 @@ export default {
       set(newName) {
         this.setName({ i: this.num, name: newName });
       }
-    },
-    playerPieceUrl() {
-      return this.pieces[this.player.piece];
     }
   },
   methods: {
@@ -73,5 +82,9 @@ export default {
 
 .two {
   grid-area: player-two;
+}
+
+.player-piece {
+  margin: 40px auto;
 }
 </style>
