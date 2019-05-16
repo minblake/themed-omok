@@ -1,9 +1,6 @@
 <template>
   <div class="omok-game-board-intersection" @click="endTurn(position)">
     <img v-if="piece >= 0" :src="pieceUrl(piece)" />
-    <template v-else>
-      {{ `${position}` }}
-    </template>
   </div>
 </template>
 
@@ -38,7 +35,26 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   font-size: 10px;
+  position: relative;
+  z-index: -2;
+}
+
+.omok-game-board-intersection:before {
+  content: "";
+  position: absolute;
+  background-color: #a8acaa;
+  width: 1px;
+  height: 100%;
+  z-index: -1;
+}
+
+.omok-game-board-intersection:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #a8acaa;
+  z-index: -1;
 }
 </style>

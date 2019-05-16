@@ -1,6 +1,6 @@
 <template>
   <div class="omok-game-state">
-    <h3 class="omok-game-player-turn">
+    <h3 class="title is-4 omok-game-player-turn">
       {{ `${currPlayer.name}'s Turn` }}
     </h3>
     <img class="omok-game-player-piece" :src="currPieceUrl(currPlayer.piece)" />

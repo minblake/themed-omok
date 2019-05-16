@@ -1,10 +1,10 @@
 <template>
-  <div class="omok-game">
+  <section class="section omok-game">
     <omok-game-state />
     <omok-game-board />
     <omok-game-player :num="0" />
     <omok-game-player :num="1" />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -27,5 +27,6 @@ export default {
   display: grid;
   place-items: center;
   grid-template-areas: "state state state" "player-one board player-two";
+  height: 100vh;
 }
 </style>
