@@ -57,7 +57,7 @@ export default {
       return this.$store.getters["game/player/getPiecesInUse"];
     },
     player() {
-      return this.$store.getters["game/player/getInfo"](this.num);
+      return this.$store.getters["game/player/getPlayer"](this.num);
     },
     playerName: {
       get() {

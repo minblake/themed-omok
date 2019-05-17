@@ -1,7 +1,11 @@
 import board from "./board";
 import player from "./player";
 import { checkMove } from "./helper";
-import { SET_LAST_MOVE, SET_WINNER } from "../../mutation-types";
+import {
+  SET_LAST_MOVE,
+  SET_WINNER,
+  TOGGLE_CURR_PLAYER
+} from "../../mutation-types";
 
 export default {
   namespaced: true,
@@ -11,9 +15,21 @@ export default {
   },
   state: {
     lastMove: -1,
-    winner: -1
+    winner: -1,
+    currPlayer: 0
   },
   getters: {
+    getCurrPlayer: state => {
+      return state.currPlayer;
+    },
+    getCurrPlayerInfo: (state, getters, rootState, rootGetters) => {
+      const playerInfo = getters["player/getPlayer"](state.currPlayer);
+      return {
+        name: playerInfo.name,
+        piece: playerInfo.piece,
+        pieceUrl: rootGetters["theme/getPiece"](playerInfo.piece)
+      };
+    },
     getLastMove: state => {
       return state.lastMove;
     },
@@ -22,6 +38,9 @@ export default {
     }
   },
   mutations: {
+    [TOGGLE_CURR_PLAYER]: state => {
+      state.currPlayer = (state.currPlayer + 1) % 2;
+    },
     [SET_LAST_MOVE]: (state, move) => {
       state.lastMove = move;
     },
@@ -31,7 +50,7 @@ export default {
   },
   actions: {
     endTurn: ({ dispatch, commit, getters }, position) => {
-      const currPlayerInfo = getters["player/getCurrInfo"];
+      const currPlayerInfo = getters["getCurrPlayerInfo"];
 
       const param = {
         lastMove: position,
@@ -52,7 +71,7 @@ export default {
           commit(SET_WINNER, param.player);
           alert(`${currPlayerInfo.name} wins!`);
         } else {
-          dispatch("player/toggleCurr");
+          commit(TOGGLE_CURR_PLAYER);
         }
       }
     },

@@ -3,7 +3,7 @@
     <h3 class="title is-4 omok-game-player-turn">
       {{ `${currPlayer.name}'s Turn` }}
     </h3>
-    <img class="omok-game-player-piece" :src="currPieceUrl(currPlayer.piece)" />
+    <img class="omok-game-player-piece" :src="currPlayer.pieceUrl" />
   </div>
 </template>
 
@@ -12,10 +12,7 @@ export default {
   name: "OmokGameState",
   computed: {
     currPlayer() {
-      return this.$store.getters["game/player/getCurrInfo"];
-    },
-    currPieceUrl() {
-      return this.$store.getters["theme/getPiece"];
+      return this.$store.getters["game/getCurrPlayerInfo"];
     }
   }
 };
