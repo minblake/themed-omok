@@ -37,7 +37,8 @@ export default {
   align-items: center;
   font-size: 10px;
   position: relative;
-  z-index: -2;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .omok-game-board-intersection:before {

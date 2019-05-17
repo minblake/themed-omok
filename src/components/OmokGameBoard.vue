@@ -39,7 +39,6 @@ export default {
 .omok-game-board {
   display: grid;
   grid-area: board;
-  z-index: -2;
   background-color: #f6faf8;
   padding: 10px;
   border-radius: 10px;
