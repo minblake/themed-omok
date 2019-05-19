@@ -8,12 +8,10 @@
             type="text"
             class="input has-text-centered"
           />
+          <img :src="pieces[player.piece]" class="player-piece" />
         </div>
       </header>
       <div class="card-content">
-        <figure class="player-piece image is-32x32">
-          <img :src="pieces[player.piece]" />
-        </figure>
         <div class="buttons has-addons">
           <button
             v-for="(piece, i) in pieces"
@@ -85,6 +83,6 @@ export default {
 }
 
 .player-piece {
-  margin: 40px auto;
+  margin-left: 10px;
 }
 </style>
