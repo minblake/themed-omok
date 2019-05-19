@@ -1,6 +1,16 @@
 <template>
-  <div class="omok-game-board-intersection" @click="endTurn(position)">
+  <div
+    class="omok-game-board-intersection"
+    @click="endTurn(position)"
+    @mouseover="isHover = true"
+    @mouseleave="isHover = false"
+  >
     <img v-if="piece >= 0" :src="pieceUrl(piece)" />
+    <img
+      v-if="isHover && piece < 0"
+      :style="{ opacity: 0.5 }"
+      :src="currPieceUrl"
+    />
   </div>
 </template>
 
@@ -19,9 +29,18 @@ export default {
       default: -1
     }
   },
+  data() {
+    return {
+      isHover: false,
+      message: "hoverme"
+    };
+  },
   computed: {
     pieceUrl() {
       return this.$store.getters["theme/getPiece"];
+    },
+    currPieceUrl() {
+      return this.$store.getters["game/getCurrPlayerInfo"].pieceUrl;
     }
   },
   methods: {
