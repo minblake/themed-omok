@@ -1,5 +1,6 @@
 <template>
   <section class="section omok-game">
+    <omok-game-theme />
     <omok-game-state />
     <omok-game-board />
     <omok-game-player :num="0" />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import OmokGameTheme from "./OmokGameTheme.vue";
 import OmokGameState from "./OmokGameState.vue";
 import OmokGameBoard from "./OmokGameBoard.vue";
 import OmokGamePlayer from "./OmokGamePlayer.vue";
@@ -15,6 +17,7 @@ import OmokGamePlayer from "./OmokGamePlayer.vue";
 export default {
   name: "OmokGame",
   components: {
+    OmokGameTheme,
     OmokGameState,
     OmokGameBoard,
     OmokGamePlayer
@@ -26,7 +29,7 @@ export default {
 .omok-game {
   display: grid;
   place-items: center;
-  grid-template-areas: "state state state" "player-one board player-two";
+  grid-template-areas: "theme theme theme" "state state state" "player-one board player-two";
   height: 100vh;
 }
 </style>
