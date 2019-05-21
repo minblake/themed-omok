@@ -10,3 +10,6 @@ export const PLACE_PIECE = "PLACE_PIECE";
 // game/player.js
 export const SET_PIECE = "SET_PIECE";
 export const SET_NAME = "SET_NAME";
+
+// theme.js
+export const SET_CURR_THEME = "SET_CURR_THEME";
