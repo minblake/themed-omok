@@ -1,5 +1,10 @@
 <template>
-  <section class="section omok-game">
+  <section
+    class="section omok-game"
+    :style="{
+      backgroundImage: `url(${themeBackground})`
+    }"
+  >
     <omok-game-theme />
     <omok-game-state />
     <omok-game-board />
@@ -21,6 +26,11 @@ export default {
     OmokGameState,
     OmokGameBoard,
     OmokGamePlayer
+  },
+  computed: {
+    themeBackground() {
+      return this.$store.getters["theme/getCurrBg"];
+    }
   }
 };
 </script>
@@ -31,5 +41,6 @@ export default {
   place-items: center;
   grid-template-areas: "theme theme theme" "state state state" "player-one board player-two";
   height: 100vh;
+  background: no-repeat center/cover;
 }
 </style>

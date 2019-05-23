@@ -40,6 +40,7 @@ export default {
   display: grid;
   grid-area: board;
   background-color: #f6faf8;
+  opacity: 0.9;
   padding: 10px;
   border-radius: 10px;
 }

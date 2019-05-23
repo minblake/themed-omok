@@ -10,11 +10,11 @@ export default {
           require("@/assets/themes/maplestory/pieces/slime.png"),
           require("@/assets/themes/maplestory/pieces/mushroom.png"),
           require("@/assets/themes/maplestory/pieces/octopus.png"),
-          require("@/assets/themes/maplestory/pieces/trixter.png"),
           require("@/assets/themes/maplestory/pieces/pig.png"),
           require("@/assets/themes/maplestory/pieces/bloctopus.png"),
           require("@/assets/themes/maplestory/pieces/panda_teddy.png")
-        ]
+        ],
+        bg: require("@/assets/themes/maplestory/bg/stump.jpg")
       },
       {
         name: "Pokemon",
@@ -25,7 +25,8 @@ export default {
           require("@/assets/themes/pokemon/pieces/pokeball.png"),
           require("@/assets/themes/pokemon/pieces/ultraball.png"),
           require("@/assets/themes/pokemon/pieces/egg.png")
-        ]
+        ],
+        bg: require("@/assets/themes/pokemon/bg/pokeball.jpg")
       },
       {
         name: "Super Mario",
@@ -36,7 +37,8 @@ export default {
           require("@/assets/themes/super_mario/pieces/boo.png"),
           require("@/assets/themes/super_mario/pieces/goomba.png"),
           require("@/assets/themes/super_mario/pieces/chain_chomp.png")
-        ]
+        ],
+        bg: require("@/assets/themes/super_mario/bg/game.jpg")
       }
     ],
     curr: 0
@@ -47,6 +49,9 @@ export default {
     },
     getCurrTheme: state => {
       return state.themes[state.curr];
+    },
+    getCurrBg: state => {
+      return state.themes[state.curr].bg;
     },
     getCurrPieces: state => {
       return state.themes[state.curr].pieces;
