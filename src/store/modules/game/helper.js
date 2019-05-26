@@ -2,36 +2,38 @@ const findRow = (i, numRows) => Math.floor(i / numRows);
 
 const findCol = (i, numCols) => i % numCols;
 
-const hasFiveConsecPieces = (start, min, max, step, piece, board) => {
+const getConsecPieces = (lastMove, min, max, step, piece, board) => {
   let i;
-  let numConsecPieces = 0;
+  const consecPieces = [];
 
+  consecPieces.push(lastMove);
   for (
-    i = start - step.dec;
-    i >= min && numConsecPieces < 4 && piece == board[i];
-    i -= step.dec
+    i = lastMove - step;
+    i >= min && consecPieces.length < 5 && piece == board[i];
+    i -= step
   ) {
-    numConsecPieces++;
+    consecPieces.push(i);
   }
 
   for (
-    i = start + step.inc;
-    i <= max && numConsecPieces < 4 && piece == board[i];
-    i += step.inc
+    i = lastMove + step;
+    i <= max && consecPieces.length < 5 && piece == board[i];
+    i += step
   ) {
-    numConsecPieces++;
+    consecPieces.push(i);
   }
 
-  return numConsecPieces >= 4;
+  return consecPieces;
 };
 
 const checkHorizontal = ({ lastMove, piece, board, gridSize }) => {
   const row = findRow(lastMove, gridSize);
   const min = Math.max(row * gridSize, lastMove - 4);
   const max = Math.min((row + 1) * gridSize - 1, lastMove + 4);
-  const step = { dec: 1, inc: 1 };
+  const step = 1;
+  const pieces = getConsecPieces(lastMove, min, max, step, piece, board);
 
-  return hasFiveConsecPieces(lastMove, min, max, step, piece, board);
+  return pieces.length == 5 ? pieces : null;
 };
 
 const checkVertical = ({ lastMove, piece, board, gridSize }) => {
@@ -41,9 +43,10 @@ const checkVertical = ({ lastMove, piece, board, gridSize }) => {
     col + gridSize * (gridSize - 1),
     lastMove + gridSize * 4
   );
-  const step = { dec: gridSize, inc: gridSize };
+  const step = gridSize;
+  const pieces = getConsecPieces(lastMove, min, max, step, piece, board);
 
-  return hasFiveConsecPieces(lastMove, min, max, step, piece, board);
+  return pieces.length == 5 ? pieces : null;
 };
 
 const checkLeftDiagonal = ({ lastMove, piece, board, gridSize }) => {
@@ -58,9 +61,11 @@ const checkLeftDiagonal = ({ lastMove, piece, board, gridSize }) => {
 
   const min = (row - minDiag) * gridSize + (col - minDiag);
   const max = (row + maxDiag) * gridSize + (col + maxDiag);
-  const step = { dec: gridSize - 1, inc: gridSize + 1 };
+  const step = gridSize + 1;
 
-  return hasFiveConsecPieces(lastMove, min, max, step, piece, board);
+  const pieces = getConsecPieces(lastMove, min, max, step, piece, board);
+
+  return pieces.length == 5 ? pieces : null;
 };
 
 const checkRightDiagonal = ({ lastMove, piece, board, gridSize }) => {
@@ -77,9 +82,11 @@ const checkRightDiagonal = ({ lastMove, piece, board, gridSize }) => {
 
   const min = (row - minDiag) * gridSize + (col + minDiag);
   const max = (row + maxDiag) * gridSize + (col - maxDiag);
-  const step = { dec: gridSize + 1, inc: gridSize - 1 };
+  const step = gridSize - 1;
 
-  return hasFiveConsecPieces(lastMove, min, max, step, piece, board);
+  const pieces = getConsecPieces(lastMove, min, max, step, piece, board);
+
+  return pieces.length == 5 ? pieces : null;
 };
 
 export const checkMove = param => {
