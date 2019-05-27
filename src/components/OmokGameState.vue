@@ -1,7 +1,12 @@
 <template>
   <div class="omok-game-state">
     <h3 class="title is-4 omok-game-player-turn">
-      {{ `${currPlayer.name}'s Turn` }}
+      <template v-if="winner < 0">
+        {{ `${currPlayer.name}'s Turn` }}
+      </template>
+      <template v-else>
+        {{ `${currPlayer.name} Wins!` }}
+      </template>
     </h3>
     <img class="omok-game-player-piece" :src="currPlayer.pieceUrl" />
   </div>
@@ -13,6 +18,9 @@ export default {
   computed: {
     currPlayer() {
       return this.$store.getters["game/getCurrPlayerInfo"];
+    },
+    winner() {
+      return this.$store.getters["game/getWinner"];
     }
   }
 };
@@ -21,6 +29,7 @@ export default {
 <style>
 .omok-game-state {
   grid-area: state;
+  z-index: 3;
 }
 
 .omok-game-player-turn {

@@ -30,5 +30,6 @@ export default {
 <style>
 .omok-game-theme {
   grid-area: theme;
+  z-index: 3;
 }
 </style>
