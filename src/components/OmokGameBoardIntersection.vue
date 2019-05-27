@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="boardInt"
     class="omok-game-board-intersection"
     @click="endTurn(position)"
     @mouseover="isHover = true"
@@ -31,8 +32,7 @@ export default {
   },
   data() {
     return {
-      isHover: false,
-      message: "hoverme"
+      isHover: false
     };
   },
   computed: {
@@ -44,7 +44,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions("game", ["endTurn"])
+    ...mapActions("game", ["endTurn"]),
+    getXY() {
+      const dim = this.$refs.boardInt.getBoundingClientRect();
+      return { x: dim.left + dim.width / 2, y: dim.top + dim.height / 2 };
+    }
   }
 };
 </script>

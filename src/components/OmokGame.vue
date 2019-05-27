@@ -41,6 +41,6 @@ export default {
   place-items: center;
   grid-template-areas: "theme theme theme" "state state state" "player-one board player-two";
   height: 100vh;
-  background: no-repeat center/cover;
+  background: no-repeat bottom/cover;
 }
 </style>

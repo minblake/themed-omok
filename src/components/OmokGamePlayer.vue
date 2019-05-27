@@ -1,5 +1,10 @@
 <template>
-  <div class="omok-game-player" :class="[num === 0 ? 'one' : 'two']">
+  <div
+    class="omok-game-player"
+    :style="[
+      num === 0 ? { gridArea: 'player-one' } : { gridArea: 'player-two' }
+    ]"
+  >
     <div class="card">
       <header class="card-header">
         <div class="card-header-title control">
@@ -74,12 +79,8 @@ export default {
 </script>
 
 <style>
-.one {
-  grid-area: player-one;
-}
-
-.two {
-  grid-area: player-two;
+.omok-game-player {
+  z-index: 3;
 }
 
 .player-piece {
