@@ -1,8 +1,9 @@
 import board from "./board";
 import player from "./player";
-import { checkMove } from "./helper";
+import { getWinningMoves } from "./helper";
 import {
   SET_LAST_MOVE,
+  SET_WINNING_MOVES,
   SET_WINNER,
   TOGGLE_CURR_PLAYER
 } from "../../mutation-types";
@@ -15,6 +16,7 @@ export default {
   },
   state: {
     lastMove: -1,
+    winningMoves: [],
     winner: -1,
     currPlayer: 0
   },
@@ -33,6 +35,9 @@ export default {
     getLastMove: state => {
       return state.lastMove;
     },
+    getWinningMoves: state => {
+      return state.winningMoves;
+    },
     getWinner: state => {
       return state.winner;
     }
@@ -44,12 +49,15 @@ export default {
     [SET_LAST_MOVE]: (state, move) => {
       state.lastMove = move;
     },
+    [SET_WINNING_MOVES]: (state, moves) => {
+      state.winningMoves = moves;
+    },
     [SET_WINNER]: (state, player) => {
       state.winner = player;
     }
   },
   actions: {
-    endTurn: ({ dispatch, commit, getters }, position) => {
+    endTurn: ({ dispatch, commit, state, getters }, position) => {
       const currPlayerInfo = getters["getCurrPlayerInfo"];
 
       const param = {
@@ -67,9 +75,10 @@ export default {
 
         commit(SET_LAST_MOVE, position);
 
-        if (checkMove(param)) {
-          commit(SET_WINNER, param.player);
-          alert(`${currPlayerInfo.name} wins!`);
+        const moves = getWinningMoves(param);
+        if (moves) {
+          commit(SET_WINNER, state.currPlayer);
+          commit(SET_WINNING_MOVES, moves);
         } else {
           commit(TOGGLE_CURR_PLAYER);
         }

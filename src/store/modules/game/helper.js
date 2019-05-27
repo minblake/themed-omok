@@ -26,7 +26,7 @@ const getConsecPieces = (lastMove, min, max, step, piece, board) => {
   return consecPieces;
 };
 
-const checkHorizontal = ({ lastMove, piece, board, gridSize }) => {
+const getHorizontal = ({ lastMove, piece, board, gridSize }) => {
   const row = findRow(lastMove, gridSize);
   const min = Math.max(row * gridSize, lastMove - 4);
   const max = Math.min((row + 1) * gridSize - 1, lastMove + 4);
@@ -36,7 +36,7 @@ const checkHorizontal = ({ lastMove, piece, board, gridSize }) => {
   return pieces.length == 5 ? pieces : null;
 };
 
-const checkVertical = ({ lastMove, piece, board, gridSize }) => {
+const getVertical = ({ lastMove, piece, board, gridSize }) => {
   const col = findCol(lastMove, gridSize);
   const min = Math.max(col, lastMove - gridSize * 4);
   const max = Math.min(
@@ -49,7 +49,7 @@ const checkVertical = ({ lastMove, piece, board, gridSize }) => {
   return pieces.length == 5 ? pieces : null;
 };
 
-const checkLeftDiagonal = ({ lastMove, piece, board, gridSize }) => {
+const getLeftDiagonal = ({ lastMove, piece, board, gridSize }) => {
   const row = findRow(lastMove, gridSize);
   const col = findCol(lastMove, gridSize);
 
@@ -68,7 +68,7 @@ const checkLeftDiagonal = ({ lastMove, piece, board, gridSize }) => {
   return pieces.length == 5 ? pieces : null;
 };
 
-const checkRightDiagonal = ({ lastMove, piece, board, gridSize }) => {
+const getRightDiagonal = ({ lastMove, piece, board, gridSize }) => {
   const row = findRow(lastMove, gridSize);
   const col = findCol(lastMove, gridSize);
 
@@ -89,11 +89,11 @@ const checkRightDiagonal = ({ lastMove, piece, board, gridSize }) => {
   return pieces.length == 5 ? pieces : null;
 };
 
-export const checkMove = param => {
+export const getWinningMoves = param => {
   return (
-    checkHorizontal(param) ||
-    checkVertical(param) ||
-    checkLeftDiagonal(param) ||
-    checkRightDiagonal(param)
+    getHorizontal(param) ||
+    getVertical(param) ||
+    getLeftDiagonal(param) ||
+    getRightDiagonal(param)
   );
 };

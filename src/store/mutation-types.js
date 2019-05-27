@@ -1,5 +1,6 @@
 // game/index.js
 export const SET_LAST_MOVE = "SET_LAST_MOVE";
+export const SET_WINNING_MOVES = "SET_WINNING_MOVES";
 export const SET_WINNER = "SET_WINNER";
 export const TOGGLE_CURR_PLAYER = "TOGGLE_CURR_PLAYER";
 
