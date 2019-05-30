@@ -4,7 +4,7 @@ import { getWinningMoves } from "./helper";
 import {
   SET_LAST_MOVE,
   SET_WINNING_MOVES,
-  SET_WINNER,
+  TOGGLE_HAS_WINNER,
   TOGGLE_CURR_PLAYER
 } from "../../mutation-types";
 
@@ -17,7 +17,7 @@ export default {
   state: {
     lastMove: -1,
     winningMoves: [],
-    winner: -1,
+    hasWinner: false,
     currPlayer: 0
   },
   getters: {
@@ -38,8 +38,8 @@ export default {
     getWinningMoves: state => {
       return state.winningMoves;
     },
-    getWinner: state => {
-      return state.winner;
+    getHasWinner: state => {
+      return state.hasWinner;
     }
   },
   mutations: {
@@ -52,12 +52,12 @@ export default {
     [SET_WINNING_MOVES]: (state, moves) => {
       state.winningMoves = moves;
     },
-    [SET_WINNER]: (state, player) => {
-      state.winner = player;
+    [TOGGLE_HAS_WINNER]: state => {
+      state.hasWinner = !state.hasWinner;
     }
   },
   actions: {
-    endTurn: ({ dispatch, commit, state, getters }, position) => {
+    endTurn: ({ dispatch, commit, getters }, position) => {
       const currPlayerInfo = getters["getCurrPlayerInfo"];
 
       const param = {
@@ -77,7 +77,7 @@ export default {
 
         const moves = getWinningMoves(param);
         if (moves) {
-          commit(SET_WINNER, state.currPlayer);
+          commit(TOGGLE_HAS_WINNER);
           commit(SET_WINNING_MOVES, moves);
         } else {
           commit(TOGGLE_CURR_PLAYER);

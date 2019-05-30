@@ -9,7 +9,7 @@
   >
     <svg
       id="win-svg"
-      :style="[winner < 0 ? { 'z-index': 0 } : { 'z-index': 2 }]"
+      :style="[hasWinner ? { 'z-index': 2 } : { 'z-index': 0 }]"
     >
       <line id="win-line" ref="line" />
     </svg>
@@ -40,7 +40,7 @@ export default {
     }),
     ...mapGetters("game", {
       winningMoves: "getWinningMoves",
-      winner: "getWinner"
+      hasWinner: "getHasWinner"
     })
   },
   watch: {
