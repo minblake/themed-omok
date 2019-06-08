@@ -1,4 +1,4 @@
-import { UPDATE_PIECE, PLACE_PIECE } from "../../mutation-types";
+import { UPDATE_PIECE, PLACE_PIECE } from "../mutation-types";
 
 export default {
   namespaced: true,

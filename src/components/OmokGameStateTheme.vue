@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "OmokGameTheme",
+  name: "OmokGameStateTheme",
   computed: {
     themes() {
       return this.$store.getters["theme/getThemes"];

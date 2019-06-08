@@ -1,4 +1,4 @@
-import { SET_NAME, SET_PIECE } from "../../mutation-types";
+import { SET_NAME, SET_PIECE } from "../mutation-types";
 
 export default {
   namespaced: true,

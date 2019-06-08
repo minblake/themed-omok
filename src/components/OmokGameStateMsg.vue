@@ -15,10 +15,10 @@ export default {
   name: "OmokGameStateMsg",
   computed: {
     currPlayer() {
-      return this.$store.getters["game/getCurrPlayerInfo"];
+      return this.$store.getters["getCurrPlayerInfo"];
     },
     hasWinner() {
-      return this.$store.getters["game/getHasWinner"];
+      return this.$store.getters["getHasWinner"];
     }
   }
 };

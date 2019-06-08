@@ -57,10 +57,10 @@ export default {
       return this.$store.getters["theme/getCurrPieces"];
     },
     piecesInUse() {
-      return this.$store.getters["game/player/getPiecesInUse"];
+      return this.$store.getters["player/getPiecesInUse"];
     },
     player() {
-      return this.$store.getters["game/player/getPlayer"](this.num);
+      return this.$store.getters["player/getPlayer"](this.num);
     },
     playerName: {
       get() {
@@ -72,8 +72,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions("game/player", ["setName", "setPiece"]),
-    ...mapActions("game", ["changePiece"])
+    ...mapActions("player", ["setName", "setPiece"]),
+    ...mapActions(["changePiece"])
   }
 };
 </script>

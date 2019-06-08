@@ -33,12 +33,12 @@ export default {
     OmokGameBoardIntersection
   },
   computed: {
-    ...mapGetters("game/board", {
+    ...mapGetters("board", {
       board: "getBoard",
       boardDim: "getDim",
       boardSize: "getBoardSize"
     }),
-    ...mapGetters("game", {
+    ...mapGetters({
       winningMoves: "getWinningMoves",
       hasWinner: "getHasWinner"
     })

@@ -40,11 +40,11 @@ export default {
       return this.$store.getters["theme/getPiece"];
     },
     currPieceUrl() {
-      return this.$store.getters["game/getCurrPlayerInfo"].pieceUrl;
+      return this.$store.getters["getCurrPlayerInfo"].pieceUrl;
     }
   },
   methods: {
-    ...mapActions("game", ["endTurn"]),
+    ...mapActions(["endTurn"]),
     getXY() {
       const dim = this.$refs.boardInt.getBoundingClientRect();
       return { x: dim.left + dim.width / 2, y: dim.top + dim.height / 2 };
