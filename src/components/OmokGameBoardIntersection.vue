@@ -71,9 +71,10 @@ export default {
 .omok-game-board-intersection:before {
   content: "";
   position: absolute;
-  background-color: #a8acaa;
-  width: 1px;
+  width: 100%;
   height: 100%;
+  top: -50%;
+  border-bottom: 0.8px solid #a8acaa;
   z-index: -1;
 }
 
@@ -81,8 +82,9 @@ export default {
   content: "";
   position: absolute;
   width: 100%;
-  height: 1px;
-  background-color: #a8acaa;
+  height: 100%;
+  left: -50%;
+  border-right: 0.8px solid #a8acaa;
   z-index: -1;
 }
 

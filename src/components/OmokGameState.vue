@@ -30,7 +30,7 @@ export default {
 <style>
 .omok-game-state {
   grid-area: state;
-  justify-self: stretch;
+  place-self: stretch;
 }
 
 .omok-game-state .box {
@@ -39,5 +39,16 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem;
+  border-radius: 0;
+}
+
+@media only screen and (min-width: 1121px) {
+  .omok-game-state {
+    place-self: center stretch;
+  }
+
+  .omok-game-state .box {
+    border-radius: 6px;
+  }
 }
 </style>

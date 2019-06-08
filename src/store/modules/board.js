@@ -3,7 +3,7 @@ import { UPDATE_PIECE, PLACE_PIECE, RESET_BOARD } from "../mutation-types";
 export default {
   namespaced: true,
   state: {
-    dim: { grid: 15, intersection: 30 },
+    dim: { grid: 15, intersection: 25 },
     board: Array(225).fill(-1)
   },
   getters: {

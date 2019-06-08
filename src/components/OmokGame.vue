@@ -36,8 +36,20 @@ export default {
 .omok-game {
   display: grid;
   place-items: center;
-  grid-template-areas: ". state ." "player-one board player-two";
+  grid-template-areas: "state state" "board board" "player-one player-two";
   height: 100vh;
   background: no-repeat bottom/cover;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1120px) {
+  .omok-game {
+    grid-template-areas: "state state" "board player-one" "board player-two";
+  }
+}
+
+@media only screen and (min-width: 1121px) {
+  .omok-game {
+    grid-template-areas: ". state ." "player-one board player-two";
+  }
 }
 </style>

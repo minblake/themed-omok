@@ -17,13 +17,14 @@
         </div>
       </header>
       <div class="card-content">
-        <div class="buttons has-addons">
+        <div class="buttons is-centered">
           <button
             v-for="(piece, i) in pieces"
             :key="i"
             class="button"
             :class="{
-              'is-light': piecesInUse.includes(i)
+              'is-success': i == piecesInUse[num],
+              'is-light': i == piecesInUse[(num + 1) % 2]
             }"
             :disabled="piecesInUse.includes(i)"
             @click="
@@ -80,10 +81,30 @@ export default {
 
 <style>
 .omok-game-player {
-  align-self: start;
+  align-self: stretch;
+}
+
+.omok-game-player .card .card-content {
+  padding: 0.3rem;
 }
 
 .player-piece {
   margin-left: 10px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1120px) {
+  .omok-game-player .card {
+    border-radius: 6px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .omok-game-player {
+    align-self: start;
+  }
+
+  .omok-game-player .card {
+    border-radius: 6px;
+  }
 }
 </style>
