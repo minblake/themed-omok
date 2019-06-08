@@ -1,14 +1,16 @@
-// game/index.js
+// index.js
 export const SET_LAST_MOVE = "SET_LAST_MOVE";
 export const SET_WINNING_MOVES = "SET_WINNING_MOVES";
-export const TOGGLE_HAS_WINNER = "TOGGLE_HAS_WINNER";
+export const SET_HAS_WINNER = "SET_HAS_WINNER";
 export const TOGGLE_CURR_PLAYER = "TOGGLE_CURR_PLAYER";
+export const RESET_GAME_STATE = "RESET_GAME_STATE";
 
-// game/board.js
+// board.js
 export const UPDATE_PIECE = "UPDATE_PIECE";
 export const PLACE_PIECE = "PLACE_PIECE";
+export const RESET_BOARD = "RESET_BOARD";
 
-// game/player.js
+// player.js
 export const SET_PIECE = "SET_PIECE";
 export const SET_NAME = "SET_NAME";
 

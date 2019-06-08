@@ -4,7 +4,13 @@ import board from "./modules/board";
 import player from "./modules/player";
 import theme from "./modules/theme";
 import * as checkWin from "../helpers/checkWinHelper";
-import * as types from "./mutation-types";
+import {
+  TOGGLE_CURR_PLAYER,
+  SET_LAST_MOVE,
+  SET_WINNING_MOVES,
+  SET_HAS_WINNER,
+  RESET_GAME_STATE
+} from "./mutation-types";
 
 Vue.use(Vuex);
 
@@ -43,17 +49,23 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    [types.TOGGLE_CURR_PLAYER]: state => {
+    [TOGGLE_CURR_PLAYER]: state => {
       state.currPlayerIndex = (state.currPlayerIndex + 1) % 2;
     },
-    [types.SET_LAST_MOVE]: (state, move) => {
+    [SET_LAST_MOVE]: (state, move) => {
       state.lastMove = move;
     },
-    [types.SET_WINNING_MOVES]: (state, moves) => {
+    [SET_WINNING_MOVES]: (state, moves) => {
       state.winningMoves = moves;
     },
-    [types.TOGGLE_HAS_WINNER]: state => {
-      state.hasWinner = !state.hasWinner;
+    [SET_HAS_WINNER]: (state, val) => {
+      state.hasWinner = val;
+    },
+    [RESET_GAME_STATE]: state => {
+      state.lastMove = -1;
+      state.winningMoves = [];
+      state.hasWinner = false;
+      state.currPlayerIndex = 0;
     }
   },
   actions: {
@@ -73,14 +85,14 @@ export default new Vuex.Store({
           piece: currPlayerInfo.piece
         });
 
-        commit(types.SET_LAST_MOVE, position);
+        commit(SET_LAST_MOVE, position);
 
         const moves = checkWin.getWinningMoves(param);
         if (moves) {
-          commit(types.TOGGLE_HAS_WINNER);
-          commit(types.SET_WINNING_MOVES, moves);
+          commit(SET_HAS_WINNER, true);
+          commit(SET_WINNING_MOVES, moves);
         } else {
-          commit(types.TOGGLE_CURR_PLAYER);
+          commit(TOGGLE_CURR_PLAYER);
         }
       }
     },
@@ -91,6 +103,9 @@ export default new Vuex.Store({
         piece: payload.newPiece
       });
     },
-    resetGame: () => {}
+    resetGame: ({ dispatch, commit }) => {
+      commit(RESET_GAME_STATE);
+      dispatch("board/resetBoard");
+    }
   }
 });

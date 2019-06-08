@@ -45,9 +45,11 @@ export default {
   },
   methods: {
     ...mapActions(["endTurn"]),
-    getXY() {
-      const dim = this.$refs.boardInt.getBoundingClientRect();
-      return { x: dim.left + dim.width / 2, y: dim.top + dim.height / 2 };
+    colorBg() {
+      this.$refs.boardInt.classList.add("win");
+    },
+    removeBg() {
+      this.$refs.boardInt.classList.remove("win");
     }
   }
 };
@@ -80,5 +82,9 @@ export default {
   height: 1px;
   background-color: #a8acaa;
   z-index: -1;
+}
+
+.win {
+  background-color: red;
 }
 </style>

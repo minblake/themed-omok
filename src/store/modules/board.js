@@ -1,4 +1,4 @@
-import { UPDATE_PIECE, PLACE_PIECE } from "../mutation-types";
+import { UPDATE_PIECE, PLACE_PIECE, RESET_BOARD } from "../mutation-types";
 
 export default {
   namespaced: true,
@@ -25,6 +25,9 @@ export default {
       state.board = state.board.map(x =>
         x == payload.oldPiece ? (x = payload.newPiece) : x
       );
+    },
+    [RESET_BOARD]: state => {
+      state.board = Array(225).fill(-1);
     }
   },
   actions: {
@@ -33,6 +36,9 @@ export default {
     },
     updatePiece: ({ commit }, payload) => {
       commit(UPDATE_PIECE, payload);
+    },
+    resetBoard: ({ commit }) => {
+      commit(RESET_BOARD);
     }
   }
 };

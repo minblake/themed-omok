@@ -3,7 +3,7 @@
     <div class="box">
       <omok-game-state-theme />
       <omok-game-state-msg />
-      <button class="button is-small is-rounded is-danger omok-game-state-info">
+      <button class="button is-small is-rounded is-danger" @click="resetGame">
         Play Again!
       </button>
     </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import OmokGameStateTheme from "./OmokGameStateTheme.vue";
 import OmokGameStateMsg from "./OmokGameStateMsg.vue";
 
@@ -19,6 +20,9 @@ export default {
   components: {
     OmokGameStateTheme,
     OmokGameStateMsg
+  },
+  methods: {
+    ...mapActions(["resetGame"])
   }
 };
 </script>
