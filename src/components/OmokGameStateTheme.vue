@@ -1,5 +1,5 @@
 <template>
-  <div class="omok-game-theme select">
+  <div class="select is-small">
     <select v-model="selected">
       <option v-for="(theme, i) in themes" :key="theme.name" :value="i">{{
         theme.name
@@ -27,9 +27,4 @@ export default {
 };
 </script>
 
-<style>
-.omok-game-theme {
-  grid-area: theme;
-  z-index: 3;
-}
-</style>
+<style></style>
