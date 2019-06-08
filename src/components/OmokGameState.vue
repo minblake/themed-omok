@@ -31,7 +31,6 @@ export default {
 .omok-game-state {
   grid-area: state;
   justify-self: stretch;
-  z-index: 3;
 }
 
 .omok-game-state .box {

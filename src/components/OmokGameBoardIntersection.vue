@@ -2,9 +2,9 @@
   <div
     ref="boardInt"
     class="omok-game-board-intersection"
-    @click="endTurn(position)"
-    @mouseover="isHover = true"
-    @mouseleave="isHover = false"
+    @click="!hasWinner && endTurn(position)"
+    @mouseover="!hasWinner && (isHover = true)"
+    @mouseleave="!hasWinner && (isHover = false)"
   >
     <img v-if="piece >= 0" :src="pieceUrl(piece)" />
     <img
@@ -41,6 +41,9 @@ export default {
     },
     currPieceUrl() {
       return this.$store.getters["getCurrPlayerInfo"].pieceUrl;
+    },
+    hasWinner() {
+      return this.$store.getters["getHasWinner"];
     }
   },
   methods: {
@@ -62,7 +65,6 @@ export default {
   align-items: center;
   font-size: 10px;
   position: relative;
-  z-index: 1;
   cursor: pointer;
 }
 

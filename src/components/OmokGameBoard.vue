@@ -45,15 +45,9 @@ export default {
   methods: {
     colorInts() {
       const boardInts = this.$refs.boardInts;
-      if (this.hasWinner) {
-        this.winningMoves.forEach(i => {
-          boardInts[i].colorBg();
-        });
-      } else {
-        boardInts.forEach(i => {
-          i.removeBg();
-        });
-      }
+      this.hasWinner
+        ? this.winningMoves.forEach(i => boardInts[i].colorBg())
+        : boardInts.forEach(i => i.removeBg());
     }
   }
 };
