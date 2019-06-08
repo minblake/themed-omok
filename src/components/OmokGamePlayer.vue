@@ -81,6 +81,7 @@ export default {
 <style>
 .omok-game-player {
   z-index: 3;
+  align-self: start;
 }
 
 .player-piece {

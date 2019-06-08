@@ -70,6 +70,7 @@ export default {
 .omok-game-board {
   display: grid;
   grid-area: board;
+  align-self: start;
   background-color: #f6faf8;
   opacity: 0.9;
   padding: 10px;
