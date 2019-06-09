@@ -1,4 +1,6 @@
-# themed-omok
+# Themed Omok
+
+An omok (5-in-a-row) game where players can choose different themes and their corresponding stones. Built using VueJs.
 
 ## Project setup
 ```
